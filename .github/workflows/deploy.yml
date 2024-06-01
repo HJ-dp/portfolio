@@ -24,8 +24,32 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Get GitHub Actions IP
+        id: ip
+        uses: haythem/public-ip@v1.2
+
+      - name: Setting environment variables
+        run: |
+          echo "AWS_DEFAULT_REGION=ap-southeast-2" >> $GITHUB_ENV
+          echo "AWS_SG_NAME=launch-wizard-1" >> $GITHUB_ENV
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-southeast-2
+
+      - name: Add GitHub Actions IP to Security group
+        run: |
+          aws ec2 authorize-security-group-ingress --group-name ${{ env.AWS_SG_NAME }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ap-southeast-2
+
       - name: Deploy to EC2
-        uses: appleboy/ssh-action@v1.0.3
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
@@ -36,3 +60,11 @@ jobs:
             npm install # 의존성 설치
             npm run build # 빌드 실행
             sudo systemctl restart nginx # Nginx 재시작
+
+      - name: Remove GitHub Actions IP from security group
+        run: |
+          aws ec2 revoke-security-group-ingress --group-name ${{ env.AWS_SG_NAME }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ap-southeast-2
