@@ -1,0 +1,11 @@
+// GNB 높이
+$headerHeight: 0px;
+
+// Footer 높이
+$footerHeight: 0px;
+
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
