@@ -49,24 +49,15 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ap-southeast-2
 
-      - name: Deploy to EC2
-        uses: fifsky/ssh-action@master
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          user: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_KEY }}
-
-          args: -tt -vvv
-          command: |
-            cd /local/portfolio/
-
       - name: Pull latest code
         uses: fifsky/ssh-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
           user: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_KEY }}
-          command: sudo git pull origin main
+          command: |
+            cd /local/portfolio/
+            sudo git pull origin main
 
       - name: Install npm dependencies
         uses: fifsky/ssh-action@master
@@ -74,7 +65,9 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           user: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_KEY }}
-          command: sudo npm install
+          command: |
+            cd /local/portfolio/
+            sudo npm install
 
       - name: Build project
         uses: fifsky/ssh-action@master
@@ -82,7 +75,9 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           user: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_KEY }}
-          command: sudo npm run build
+          command: |
+            cd /local/portfolio/
+            sudo npm run build
 
       - name: Restart Nginx
         uses: fifsky/ssh-action@master
