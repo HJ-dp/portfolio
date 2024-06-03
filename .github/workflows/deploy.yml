@@ -59,7 +59,7 @@ jobs:
           args: -tt -vvv
           command: |
             cd /local/portfolio/
-            git pull origin main
+            sudo git pull origin main
             sudo npm install
             sudo npm run build
             sudo systemctl restart nginx
