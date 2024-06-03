@@ -60,8 +60,8 @@ jobs:
           command: |
             cd /local/portfolio/
             git pull origin main
-            npm install
-            npm run build
+            sudo npm install
+            sudo npm run build
             sudo systemctl restart nginx
 
       - name: Remove GitHub Actions IP from security group
