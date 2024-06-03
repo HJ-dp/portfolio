@@ -1,5 +1,11 @@
+import styles from "./MainPage.module.scss";
+
 function MainPage() {
-  return <div>테스트 !</div>;
+  return (
+    <div className={styles.mainContainer}>
+      <img src="src/assets/hojinlee.jpg" alt="hojin" />
+    </div>
+  );
 }
 
 export default MainPage;
