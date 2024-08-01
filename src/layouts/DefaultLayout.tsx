@@ -1,15 +1,16 @@
+/** @jsxImportSource @emotion/react */
 import { Outlet } from "react-router";
-
-import styles from "./DefaultLayout.module.scss";
 
 import GNB from "../components/common/GNB";
 import Footer from "../components/common/Footer";
+import { articleLayoutCss } from "./defaultLayoutCss";
+import { fullCss } from "../styles/globalStyle";
 
 function DefaultLayout() {
   return (
-    <main>
+    <main css={fullCss}>
       <GNB />
-      <article className={styles.articleLayout}>
+      <article css={articleLayoutCss}>
         <Outlet />
       </article>
       <Footer />

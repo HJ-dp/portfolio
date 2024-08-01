@@ -1,23 +1,15 @@
-@import "../../styles/variables";
+import { css } from "@emotion/react";
 
-.mainContainer {
-  /* 데스크탑 */
-  @include flexCenter;
+export const mainCss = css`
   flex-direction: column;
   height: 100%;
-
   & > img {
     max-width: 500px;
   }
-  @media screen and (max-width: 767px) {
-    /* 타블렛 */
-  }
-
   @media screen and (max-width: 479px) {
-    /* 모바일 */
     & > img {
       width: 100%;
     }
     align-items: flex-end;
   }
-}
+`;

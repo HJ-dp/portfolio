@@ -1,7 +1,8 @@
-import styles from "./GNB.module.scss";
+/** @jsxImportSource @emotion/react */
+import { gnbCss } from "./gnbCss";
 
 function GNB() {
-  return <nav className={styles.GNBContainer}></nav>;
+  return <nav css={gnbCss}></nav>;
 }
 
 export default GNB;

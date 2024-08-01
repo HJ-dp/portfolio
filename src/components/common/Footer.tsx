@@ -1,7 +1,8 @@
-import styles from "./Footer.module.scss";
+/** @jsxImportSource @emotion/react */
+import { footerCss } from "./footerCss";
 
 function Footer() {
-  return <nav className={styles.footerContainer}></nav>;
+  return <nav css={footerCss}></nav>;
 }
 
 export default Footer;

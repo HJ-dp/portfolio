@@ -1,8 +1,9 @@
-import styles from "./MainPage.module.scss";
+/** @jsxImportSource @emotion/react */
+import { mainCss } from "./mainPageCss";
 
 function MainPage() {
   return (
-    <div className={styles.mainContainer}>
+    <div css={mainCss}>
       <img src="uploadsImgs/hojinlee.jpg" alt="hojin" />
     </div>
   );
