@@ -1,11 +1,11 @@
 import { css } from "@emotion/react";
 import { flexCenter } from "../styles/globalStyle";
 
-const headerHeight = "0px";
-const footerHeight = "0px";
+export const headerHeight = "0px";
+export const footerHeight = "100px";
 
 export const articleLayoutCss = css`
-  min-height: calc(100vh - ${headerHeight} - ${footerHeight});
+  min-height: calc(100vh - ${headerHeight});
   ${flexCenter}
   /* 데스크탑 */
 
@@ -15,6 +15,5 @@ export const articleLayoutCss = css`
 
   @media screen and (max-width: 479px) {
     /* 모바일 */
-    align-items: flex-end;
   }
 `;
