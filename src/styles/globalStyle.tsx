@@ -5,7 +5,6 @@ export const globalCss = css`
     & * {
       box-sizing: border-box;
     }
-    background-color: #a7e0c8;
   }
 
   /* 폰트 초기화 */
@@ -55,8 +54,8 @@ export const globalCss = css`
 export const globalFont = css`
   @font-face {
     font-family: "Pretendard-Regular";
-    src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
-      format("woff");
+    src: url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Regular.woff2")
+      format("woff2");
     font-weight: 400;
     font-style: normal;
   }
@@ -66,6 +65,11 @@ export const flexCenter = css`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const flexCenterColumn = css`
+  ${flexCenter}
+  flex-direction: column;
 `;
 
 export const fullCss = css`
