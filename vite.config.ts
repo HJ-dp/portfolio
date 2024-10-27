@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     define: {
       __IMAGE_URL__:
-        env.MODE === "production"
+        mode === "production"
           ? JSON.stringify(env.VITE_NGINX_IMAGE_URL)
           : JSON.stringify(env.VITE_LOCAL_IMAGE_URL),
     },
