@@ -89,7 +89,7 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           command: |
             cd /local/portfolio/
-            sudo npm run build --mode production
+            npm run build --mode production
 
       - name: Restart Nginx
         uses: fifsky/ssh-action@master
