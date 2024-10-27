@@ -9,7 +9,6 @@ function MainPage() {
   return (
     <div id="mainImage" css={mainCss}>
       <img src={imageURL} alt="hojin" />
-      <input type="text" value={next} onChange={onChange} />
     </div>
   );
 }
