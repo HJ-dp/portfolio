@@ -1,10 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { mainCss } from "./mainPageCss";
+
 function MainPage() {
+
+  const imageURL = `${__IMAGE_URL__}hojinlee.jpg`;
+
+
   return (
     <div id="mainImage" css={mainCss}>
-      <img src="uploadsImgs/hojinlee.jpg" alt="hojin" />
-      {/* <img src="../src/assets/hojinlee.jpg" alt="hojin" /> */}
+      <img src={imageURL} alt="hojin" />
+      <input type="text" value={next} onChange={onChange} />
     </div>
   );
 }
