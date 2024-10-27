@@ -59,6 +59,18 @@ jobs:
             cd /local/portfolio/
             sudo git pull origin main
 
+      - name: Create or update .env file
+        uses: fifsky/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          user: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          command: |
+            cd /local/portfolio/
+            echo "VITE_NGINX_IMAGE_URL=${{ secrets.VITE_NGINX_IMAGE_URL }}" | sudo tee .env
+            echo "VITE_LOCAL_IMAGE_URL=${{ secrets.VITE_LOCAL_IMAGE_URL }}" | sudo tee -a .env
+            echo "VITE_GA4=${{ secrets.VITE_GA4 }}" | sudo tee -a .env
+
       - name: Install npm dependencies
         uses: fifsky/ssh-action@master
         with:
